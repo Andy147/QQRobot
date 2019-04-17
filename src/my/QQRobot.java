@@ -13,14 +13,32 @@ public class QQRobot {
 		try {
 			DatagramSocket sock = new DatagramSocket(6543);
 			byte[] recvBuf = new byte[1024*64];
+			CQ cq = new CQ();
+			PrivateRequestHandler privateRequestHandler = new PrivateRequestHandler();
 			while(true)
 			{
 				DatagramPacket recvPkt = new DatagramPacket(recvBuf, recvBuf.length);
 				sock.receive(recvPkt);
 				ByteBuffer bbuf = ByteBuffer.wrap(recvPkt.getData(), 0, recvPkt.getLength());
 				//开始对数据进行解析
+				int reserved = bbuf.getInt();//预留字段，未使用
+			    int type = bbuf.getInt();//消息类型
+			    if(type == CQ.CQ_GROUP_MSG)
+			    {
+			    	int subType = bbuf.getInt();
+			    	int sendTime = bbuf.getInt();
+			    	long fromGroup = bbuf.getLong();
+			    	long fromQQ = bbuf.getLong();
+			    	short strN = bbuf.getShort();
+			    	
+			    	byte[] msgData = new byte[4000];
+			    	bbuf.get(msgData, 0, strN);
+			    	String msg = new String(msgData , 0 , strN , "GBK");
+			    	System.out.println(">>>>>>接收到的数据" + msg );
+			    	String str = privateRequestHandler.Handler(msg);
+			    	cq.senGroupMsg(fromGroup, fromQQ, str);
+			    }
 				
-				System.out.println("接收到的数据" + recvPkt.getLength() + "byte...");
 			}
 			
 		} catch (SocketException e) {
