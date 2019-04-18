@@ -6,9 +6,11 @@ import java.net.DatagramSocket;
 import java.net.SocketException;
 import java.nio.ByteBuffer;
 
+import org.dom4j.DocumentException;
+
 public class QQRobot {
 
-	public static void main(String[] args) 
+	public static void main(String[] args) throws DocumentException 
 	{
 		try {
 			DatagramSocket sock = new DatagramSocket(6543);

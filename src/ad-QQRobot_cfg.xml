@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+  <request>
+      <match>哪里</match>
+      <response>我在幼儿园</response>
+  </request>
+  <request>
+      <match>聊天</match>
+      <response>聊啊！请问你是男生女生？</response>
+  </request>
+    <request>
+      <match>男生</match>
+      <response>哦！你帅不？你有刘德华帅吗？</response>
+  </request>
+  <request>
+      <match>没有</match>
+      <response>男人不帅不要紧的。对于一个女人来讲，能找一个爱自己的人比找一个帅男人更有意思！</response>
+  </request>
+  <request>
+      <match>最好</match>
+      <response>成熟，稳重的。</response>
+  </request>
+   <request>
+      <match>爱</match>
+      <response>还没有么！我很可怜吧！</response>
+  </request>
+  <request>
+      <match>妈妈</match>
+      <response>没有啊！你听说哪个机器人有妈妈了？</response>
+  </request>
+  
+  
+   <request>
+      <match>干什么</match>
+      <response>在上班</response>
+  </request>
+  
+  <request>
+      <match>你好</match>
+      <response>大家好，我是韦联告机器人，我为大家服务,以后需要我怎么服务尽管提，我尽量满足大家！</response>
+  </request>
+  
+   <request>
+      <match>人才</match>
+      <response>一般般</response>
+  </request>
+  
+  <default>这个问题太难了，无法解答</default>
+
+</config>
