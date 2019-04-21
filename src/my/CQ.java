@@ -1,6 +1,7 @@
 package my;
 
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetSocketAddress;
@@ -33,12 +34,19 @@ public class CQ
 			e.printStackTrace();
 		}
 	}
-	//发送消息
+	//发送群消息
 	public void senGroupMsg(long toGroup , long toQQ , String strMsg) throws IOException 
+	{
+		sendMsg(toGroup , CQ_GROUP_MSG , toQQ , strMsg);
+
+	}
+	//给个人发消息
+	//发送消息
+	public void sendMsg(long toGroup , int type , long toQQ , String strMsg) throws IOException
 	{
 		ByteBuffer bbuf = ByteBuffer.allocate(4000);
 		bbuf.putInt(0); // reserved
-		bbuf.putInt(SEND_GROUP_MSG); // cmd
+		bbuf.putInt(type); // cmd
 		bbuf.putLong( toGroup); // fromGroup
 		bbuf.putLong( toQQ ); // fromQQ
 		

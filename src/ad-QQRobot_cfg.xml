@@ -3,6 +3,7 @@
   <request>
       <match>哪里</match>
       <response>我在幼儿园</response>
+      <priority>4</priority>
   </request>
   <request>
       <match>聊天</match>
@@ -33,12 +34,14 @@
    <request>
       <match>干什么</match>
       <response>在上班</response>
+      <priority>2</priority>
   </request>
   
   <request>
       <match>你好</match>
-      <response>大家好，我是韦联告机器人，我为大家服务,以后需要我怎么服务尽管提，我尽量满足大家！</response>
+      <response>大家好，我是韦联告机器人，我为大家服务,以后需要我怎么服务尽管提，我尽量满足大家！如果需要看VIP视频，请发视频连接给我并@我，我帮你处理</response>
   </request>
+  
   
    <request>
       <match>人才</match>

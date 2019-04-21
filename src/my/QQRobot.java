@@ -16,7 +16,7 @@ public class QQRobot {
 			DatagramSocket sock = new DatagramSocket(6543);
 			byte[] recvBuf = new byte[1024*64];
 			CQ cq = new CQ();
-			PrivateRequestHandler privateRequestHandler = new PrivateRequestHandler();
+			
 			while(true)
 			{
 				DatagramPacket recvPkt = new DatagramPacket(recvBuf, recvBuf.length);
@@ -36,9 +36,19 @@ public class QQRobot {
 			    	byte[] msgData = new byte[4000];
 			    	bbuf.get(msgData, 0, strN);
 			    	String msg = new String(msgData , 0 , strN , "GBK");
+			    	String str = PrivateRequestHandler.i.Handler(msg);
+			    	if(msg.indexOf("CQ:at") >= 0)
+			    	{
+			    		String ss = "[CQ:at,qq=" + String.valueOf(fromQQ) + "]";
+			    		ss += str;
+			    		str = ss;
+			    	}
 			    	System.out.println(">>>>>>接收到的数据" + msg );
-			    	String str = privateRequestHandler.Handler(msg);
-			    	cq.senGroupMsg(fromGroup, fromQQ, str);
+			    	if(str != null)
+			    	{
+			    		cq.senGroupMsg(fromGroup, fromQQ, str);
+			    	}
+			    	
 			    }
 				
 			}
